@@ -33,15 +33,17 @@ const createElement = async () => {
     createDiv.classList.add('item');
     createDiv.textContent = items[item].content;
 
-    const eleSpan = document.createElement('span');
-    eleSpan.classList.add('answer');
-    eleSpan.textContent = items[item].order;
-    createDiv.appendChild(eleSpan);
+    const answerSpan = document.createElement('span');
+    answerSpan.classList.add('answer');
+    answerSpan.textContent = items[item].order;
+
+    createDiv.appendChild(answerSpan);
 
     itemList.appendChild(createDiv);
   });
 
   clickEvent();
+  handleAnswerClick();
 };
 
 const clickEvent = () => {
@@ -50,17 +52,20 @@ const clickEvent = () => {
 
   listItems.forEach((item) => {
     item.addEventListener('click', (e) => {
+      console.dir(item);
+
       if (!e.target.classList.contains('selected')) {
         e.target.classList.add('selected');
         const eltSpan = document.createElement('span');
         eltSpan.classList.add('order');
         eltSpan.textContent = num;
+
         item.appendChild(eltSpan);
         num += 1;
       } else {
-        if (e.target.childNodes[1].textContent == num - 1) {
+        if (e.target.childNodes[2].textContent == num - 1) {
           e.target.classList.remove('selected');
-          const targeted = e.target.childNodes[1];
+          const targeted = e.target.childNodes[2];
           e.target.removeChild(targeted);
           num -= 1;
         } else {
@@ -82,6 +87,7 @@ const handleBtnClick = async () => {
 
   btn.onclick = () => {
     const submited = document.querySelectorAll('.order');
+    console.log(submited);
     const submitedList = [...submited].map((item, index) => {
       if (item.parentElement.firstChild.data === answerList[Number(item.textContent) - 1]) {
         item.classList.add('pass');
@@ -103,4 +109,3 @@ const handleAnswerClick = () => {
     });
   };
 };
-handleAnswerClick();
