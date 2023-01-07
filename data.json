@@ -1,0 +1,21 @@
+{
+  "data": [
+    { "order": 1, "content": "북한의 기습 남침" },
+    { "order": 2, "content": "3일 만에 서울 함락[국군의 한강 인도교 폭파]" },
+    { "order": 3, "content": "UN군 참전 및 작전통제권 이양" },
+    { "order": 4, "content": "낙동강 전선까지 후퇴" },
+    { "order": 5, "content": "인천 상륙 작전 성공" },
+    { "order": 6, "content": "서울 탈환" },
+    { "order": 7, "content": "38도선 돌파" },
+    { "order": 8, "content": "평양 탈환" },
+    { "order": 9, "content": "압록강 연안 초산까지 진격" },
+    { "order": 10, "content": "중공군 개입으로 후퇴" },
+    { "order": 11, "content": "장진호 전투" },
+    { "order": 12, "content": "흥남 철수 작전" },
+    { "order": 13, "content": "1-4후퇴(서울 재함락)" },
+    { "order": 14, "content": "평택-오산까지 후퇴" },
+    { "order": 15, "content": "국군과 유엔군의 반격으로 서울 재탈환" },
+    { "order": 16, "content": "38도선 부근에서 전선 고착" },
+    { "order": 17, "content": "소련이 유엔에 휴전 제의" }
+  ]
+}
