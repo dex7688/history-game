@@ -5,29 +5,19 @@
 }
 
 body {
+  position: relative;
   background: #19161c;
-  height: 100vh;
+  width: 100%;
+
   display: flex;
   flex-direction: column;
 }
 
 .itemList {
-  width: 100%;
-  padding: 10px 0;
-
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  align-items: center;
   flex-grow: 1;
 }
 
 .btnWrapper {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 20px;
-  padding-bottom: 5px;
 }
 
 .item {
@@ -42,7 +32,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-grow: 1;
 }
 
 .item.show::after {
