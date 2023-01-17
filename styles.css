@@ -9,15 +9,18 @@ body {
   background: #19161c;
   width: 100%;
 
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 .itemList {
-  flex-grow: 1;
 }
 
 .btnWrapper {
+  height: 30px;
 }
 
 .item {

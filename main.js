@@ -1,12 +1,14 @@
 'strict mode';
 
 // 모바일 화면 맞추기
-function setScreenSize() {
+let vh = window.innerHeight * 0.01;
+document.documentElement.style.setProperty('--vh', `${vh}px`);
+
+window.addEventListener('resize', () => {
+  console.log('resize');
   let vh = window.innerHeight * 0.01;
   document.documentElement.style.setProperty('--vh', `${vh}px`);
-}
-setScreenSize();
-window.addEventListener('resize', setScreenSize);
+});
 
 // 데이터 불러오기
 const fetchData = async () => {
