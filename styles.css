@@ -1,30 +1,56 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   background: #19161c;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .itemList {
-  height: 80%;
   width: 100%;
-  /* display: flex; */
-  /* flex-direction: column; */
+  padding: 10px 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.btnWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
 }
 
 .item {
   position: relative;
-  float: left;
-  width: 50%;
-  height: 60px;
-  padding: 0 20px;
+  width: 90%;
   border: 1px solid #e68a71;
   border-radius: 10px;
   box-sizing: border-box;
-  font-size: 15px;
   color: #e68a71;
   background: #3b3640;
+
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-grow: 1;
+}
+
+.item.show::after {
+  content: attr(data-answer);
+  position: absolute;
+  right: 5px;
+  color: red;
+  font-weight: bold;
+  display: flex;
 }
 
 .item.selected {
@@ -32,23 +58,6 @@ body {
   background-color: rgba(0, 0, 0, 0.01);
   color: white;
   opacity: 0.6;
-}
-
-.answer {
-  position: absolute;
-  right: -5px;
-  font-size: 15px;
-  font-weight: bold;
-  width: 25px;
-  height: 25px;
-  line-height: 28px;
-  color: red;
-  text-align: center;
-  display: none;
-}
-
-.answer.show {
-  display: block !important;
 }
 
 .order {
@@ -59,9 +68,13 @@ body {
   width: 25px;
   height: 25px;
   line-height: 28px;
-  left: -4px;
+  left: 5px;
   color: yellow;
   z-index: 10;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .order.pass {

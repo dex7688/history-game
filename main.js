@@ -7,65 +7,50 @@ const fetchData = async () => {
   return result.data;
 };
 
-// 랜덤으로 보여주기 위해
-const createRandomArray = () => {
-  let number = Math.floor(Math.random() * 17);
-  const randomArr = [];
-
-  while (randomArr.length !== 17) {
-    if (!randomArr.includes(number)) {
-      randomArr.push(number);
-    } else {
-      number = Math.floor(Math.random() * 17);
-    }
-  }
-
-  return randomArr;
-};
-
+// item element 생성
 const createElement = async () => {
+  // itemList 선택
   const itemList = document.querySelector('.itemList');
-  const items = await fetchData();
-  const randomArray = createRandomArray();
 
-  randomArray.forEach((item) => {
+  // data 가져오기
+  const items = await fetchData();
+
+  // 임의의 순서를 가지는 배열 생성
+  const dataLength = 17;
+  const randomDataOrder = Array.from({ length: dataLength }, (v, i) => i).sort(() => Math.random() - 0.5);
+
+  // 임의의 순서를 가진 배열을 이용하여 element 생성
+  randomDataOrder.forEach((item) => {
     const createDiv = document.createElement('div');
     createDiv.classList.add('item');
     createDiv.textContent = items[item].content;
-
-    const answerSpan = document.createElement('span');
-    answerSpan.classList.add('answer');
-    answerSpan.textContent = items[item].order;
-
-    createDiv.appendChild(answerSpan);
-
+    createDiv.dataset.answer = items[item].order;
     itemList.appendChild(createDiv);
   });
 
   clickEvent();
-  handleAnswerClick();
 };
+// createElement();
 
 const clickEvent = () => {
-  const listItems = document.querySelectorAll('.item');
+  const items = document.querySelectorAll('.item');
   let num = 1;
 
-  listItems.forEach((item) => {
+  items.forEach((item) => {
     item.addEventListener('click', (e) => {
-      console.dir(item);
-
       if (!e.target.classList.contains('selected')) {
-        e.target.classList.add('selected');
-        const eltSpan = document.createElement('span');
-        eltSpan.classList.add('order');
-        eltSpan.textContent = num;
+        console.dir(e.target);
 
-        item.appendChild(eltSpan);
+        e.target.classList.add('selected');
+        const selectedOrder = document.createElement('span');
+        selectedOrder.classList.add('order');
+        selectedOrder.textContent = num;
+        item.appendChild(selectedOrder);
         num += 1;
       } else {
-        if (e.target.childNodes[2].textContent == num - 1) {
+        if (e.target.childNodes[1].textContent == num - 1) {
           e.target.classList.remove('selected');
-          const targeted = e.target.childNodes[2];
+          const targeted = e.target.childNodes[1];
           e.target.removeChild(targeted);
           num -= 1;
         } else {
@@ -74,11 +59,7 @@ const clickEvent = () => {
       }
     });
   });
-
-  handleBtnClick();
 };
-
-createElement();
 
 const handleBtnClick = async () => {
   const btn = document.querySelector('button');
@@ -98,14 +79,15 @@ const handleBtnClick = async () => {
   };
 };
 
-handleBtnClick();
-
-const handleAnswerClick = () => {
-  const solBtn = document.querySelector('.solution');
-  solBtn.onclick = () => {
-    const answer = document.querySelectorAll('.answer');
-    answer.forEach((item) => {
-      item.classList.toggle('show');
-    });
-  };
+// 정답보기 버튼 클릭시 모든 item 요소에 'show' 클래스 토글
+const showAnswerBtnClick = () => {
+  const showAnswerBtn = document.querySelector('.showAnswerBtn');
+  showAnswerBtn.addEventListener('click', () => {
+    const items = document.querySelectorAll('.item');
+    items.forEach((item) => item.classList.toggle('show'));
+  });
 };
+
+createElement();
+handleBtnClick();
+showAnswerBtnClick();
